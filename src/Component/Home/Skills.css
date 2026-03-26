@@ -1,0 +1,61 @@
+/* Skills.css */
+
+.skills-section {
+  background: var(--bg);
+  padding: 80px 0;
+}
+
+.skill-name {
+  font-weight: 500;
+  color: var(--text);
+}
+
+.skill-percentage {
+  font-weight: 600;
+  color: var(--primary);
+  background: rgba(16, 185, 129, 0.1);
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.progress-container {
+  margin-top: 8px;
+}
+
+.progress-bar-bg {
+  background: var(--progress-bg);
+  border-radius: 10px;
+  height: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+  border-radius: 10px;
+  height: 100%;
+  width: 0%;
+  transition: width 0.05s linear; /* Smooth but fast updates */
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skills-section {
+    padding: 60px 0;
+  }
+  
+  .skill-name {
+    font-size: 0.875rem;
+  }
+  
+  .skill-percentage {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+  }
+  
+  .progress-bar-bg {
+    height: 6px;
+  }
+}

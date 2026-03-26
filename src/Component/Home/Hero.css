@@ -1,0 +1,48 @@
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* ===== LIGHT THEME (DEFAULT) ===== */
+  --bg: #f8fafc;
+  --bg-secondary: #ffffff;
+  --card-bg: #ffffff;
+
+  --text: #1e293b;
+  --text-secondary: #64748b;
+
+  --border: #e2e8f0;
+
+  --primary: #10b981;
+  --primary-hover: #059669;
+
+  --nav-bg: rgba(33, 39, 45, 0.92);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+.hero-section {
+  background-color: var(--bg);
+  color: var(--text);
+  margin-top:50px ;
+}
+
+.hero-subtitle {
+  color: var(--text-secondary);
+}
+.hero-btn-primary{
+  background-color: var(--primary);
+  color: var(--text) ;
+}
+.hero-btn-outline{
+    border: 2px solid #059669;
+}
+
+.stat-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+}

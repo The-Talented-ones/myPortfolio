@@ -1,0 +1,75 @@
+.text-emerald {
+  color: #10b981;
+}
+
+.bg-emerald {
+  background-color: #10b981;
+}
+
+.bg-emerald-light {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.divider {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  border-radius: 2px;
+}
+
+.skill-card {
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.skill-item {
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.skill-item:hover {
+  background-color: white;
+  border-color: #10b981;
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.1);
+}
+
+.btn-emerald {
+  background-color: #10b981;
+  color: white;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-emerald:hover {
+  background-color: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+}
+
+.highlight-icon {
+  min-width: 20px;
+}
+
+@media (max-width: 768px) {
+  .display-5 {
+    font-size: 2rem;
+  }
+
+  .skill-item {
+    padding: 1rem 0.5rem;
+  }
+
+  .skill-item h6 {
+    font-size: 0.75rem;
+  }
+
+  .skill-item small {
+    font-size: 0.7rem;
+  }
+}
