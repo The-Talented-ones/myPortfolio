@@ -31,7 +31,7 @@ const Footer = () => {
                                 <a href="#" className="social-link" aria-label="GitHub">
                                     <FaGithub />
                                 </a>
-                                <a href="#" className="social-link" aria-label="Twitter">
+                                <a href="https://x.com/The Talented_dev" className="social-link" aria-label="Twitter">
                                     <FaTwitter />
                                 </a>
                                 <a href="https://www.linkedin.com/in/oloyede-ameer-306569276/" className="social-link" aria-label="LinkedIn">
@@ -48,11 +48,11 @@ const Footer = () => {
                     <div className="footer-links-col">
                         <h3 className="footer-title">Quick Links</h3>
                         <ul className="footer-list">
-                            <li><a href="#">Home</a></li>
+                            <li><a href="#home">Home</a></li>
                             <li><a href="#services">About us </a></li>
                             <li><a href="#how-it-works">Skills</a></li>
-                            <li><a href="#">Project</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="#projects">Project</a></li>
+                            <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
 

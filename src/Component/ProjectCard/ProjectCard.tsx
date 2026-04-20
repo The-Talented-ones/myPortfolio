@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { JSX } from 'react';
+import type { JSX, MouseEvent } from 'react';
 import type { Project } from '../../types/project';
 import { 
   FaGithub, FaExternalLinkAlt, FaStar, FaCode,
@@ -56,7 +56,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     fullstack: 'Full Stack',
   };
 
-  const handleFavoriteClick = (e: React.MouseEvent) => {
+  const handleFavoriteClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setIsFavorite(!isFavorite);
   };
@@ -129,30 +129,36 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             <FaCode className="text-emerald-600 text-4xl" />
           </div>
         )}
-        <div className="project-overlay">
-          <div className="project-links">
-            <a 
-              href={project.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FaGithub />
-              <span>Code</span>
-            </a>
-            <a 
-              href={project.liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-link"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <FaExternalLinkAlt />
-              <span>Live Demo</span>
-            </a>
+        {(project.githubLink || project.liveLink) && (
+          <div className="project-overlay">
+            <div className="project-links">
+              {project.githubLink && (
+                <a 
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-link"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <FaGithub />
+                  <span>Code</span>
+                </a>
+              )}
+              {project.liveLink && (
+                <a 
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-link"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <FaExternalLinkAlt />
+                  <span>Live Demo</span>
+                </a>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Card Body */}
@@ -182,7 +188,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
         {/* Features (Collapsible) */}
         <AnimatePresence>
-          {isExpanded && (
+          {isExpanded && project.features?.length ? (
             <motion.div
               className="features-container"
               initial={{ opacity: 0, height: 0 }}
@@ -202,7 +208,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 ))}
               </ul>
             </motion.div>
-          )}
+          ) : null}
         </AnimatePresence>
       </div>
 
@@ -224,7 +230,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               <FaStar />
             </div>
             <div className="stat-content">
-              <div className="stat-value">{project.features.length}</div>
+              <div className="stat-value">{project.features?.length ?? 0}</div>
               <div className="stat-label">Features</div>
             </div>
           </div>

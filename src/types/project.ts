@@ -3,9 +3,9 @@ export interface Project {
   title: string;
   description: string;
   technologies: string[];
-  githubLink: string;
-  liveLink: string;
-  image: string;
-  features: string[];
+  githubLink?: string;
+  liveLink?: string;
+  image?: string;
+  features?: string[];
   category: 'frontend' | 'backend' | 'fullstack';
 }

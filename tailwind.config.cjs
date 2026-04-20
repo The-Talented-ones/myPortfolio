@@ -1,12 +1,39 @@
-/** @type {import('tailwindcss').Config} */
+// /** @type {import('tailwindcss').Config} */
+// module.exports = {
+//   content: [
+//     './index.html',
+//     './src/**/*.{js,ts,jsx,tsx}'
+//   ],
+//   theme: {
+//     extend: {},
+//   },
+//   plugins: [],
+//   darkMode: 'class',
+// }
+// tailwind.config.js
 module.exports = {
+  darkMode: 'class', // or 'media' based on your preference
   content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}'
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'gradient': 'gradient 8s linear infinite',
+      },
+      keyframes: {
+        'gradient': {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          }
+        }
+      }
+    },
   },
   plugins: [],
-  darkMode: 'class',
 }

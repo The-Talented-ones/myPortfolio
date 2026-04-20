@@ -7,19 +7,17 @@ import Navbar from "../../Component/Navbar/Navbar";
 import Footer from "../../Component/Footer/Footer";
 
 import Hero from "../../Component/Home/Hero";
-import About from "../../Component/Home/About";
-import Projects from "../../Component/Home/Projects";
-import Skills from "../../Component/Home/Skills";
+import About from "../../Component/About/About";
+import Projects from "../../Component/Projects/Projects";
+import Skills from "../../Component/Skills/Skills";
 
 import type { SkillCategory, Stat } from "../../types/home";
-import type { Project } from "../../types/project";
-
-import schoolWebsiteImg from '../../assets/project1.png';
+import { projects } from "../../data/project";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Home.css";
-import Contact from "../../Component/Home/Contact";
-import Testimonial from "../../Component/Home/Testimonial";
+import Contact from "../../Component/Contact/Contact";
+import Testimonial from "../../Component/Testimonial/Testimonial";
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,41 +26,6 @@ const Home = () => {
     setIsVisible(true);
   }, []);
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "School Management System",
-      description: "A comprehensive web platform for school administration, student management, and academic tracking.",
-      category: "fullstack" as const,
-      technologies: ["React", "TypeScript", "Node.js", "MongoDB"],
-      githubLink: "https://github.com/talentedusain/school-website",
-      liveLink: "https://school-website.vercel.app",
-      image: schoolWebsiteImg,
-      features: ["Student registration", "Grade management", "Attendance tracking", "Admin dashboard"],
-    },
-    {
-      id: 2,
-      title: "Task Management App",
-      description: "Collaborative task management app with real-time updates",
-      category: "fullstack" as const,
-      technologies: ["React", "TypeScript", "Node.js"],
-      githubLink: "https://github.com",
-      liveLink: "https://example.com",
-      image: "",
-      features: ["Real-time updates", "Task assignment", "Notifications"],
-    },
-    {
-      id: 3,
-      title: "Weather Dashboard",
-      description: "Weather app with forecast and data visualization",
-      category: "frontend" as const,
-      technologies: ["React", "TypeScript", "Tailwind CSS"],
-      githubLink: "https://github.com",
-      liveLink: "https://example.com",
-      image: "",
-      features: ["Weather forecast", "Historical data", "Charts"],
-    },
-  ];
 
   const skillCategories: SkillCategory[] = [
     {
