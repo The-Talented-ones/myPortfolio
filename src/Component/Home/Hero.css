@@ -3,19 +3,19 @@
 ===================================================== */
 
 .hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 
-  padding: 8rem 0 5rem;
+    padding: 8rem 0 5rem;
 
-  background: #081225;
+    background: #081225;
 
-  color: #f8fafc;
+    color: #e6eef8;
 
-  isolation: isolate;
+    isolation: isolate;
 }
 
 /* ==========================================

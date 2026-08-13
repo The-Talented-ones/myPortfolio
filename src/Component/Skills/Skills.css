@@ -7,9 +7,7 @@
     position: relative;
     padding: 6rem 0;
     background: #081225;
-    color: #F8FAFC;
-    overflow: hidden;
-    isolation: isolate;
+    color: #e6eef8;
 }
 
 /* ----- Container ----- */
@@ -17,62 +15,6 @@
     position: relative;
     width: min(1200px, 92%);
     margin: 0 auto;
-    z-index: 2;
-}
-
-/* =====================================================
-   BACKGROUND EFFECTS
-   ===================================================== */
-
-/* ----- Grid Background ----- */
-.skills-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: 
-        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: .25;
-    mask-image: radial-gradient(circle, black 45%, transparent 95%);
-    pointer-events: none;
-}
-
-/* ----- Gradient Overlay ----- */
-.skills-section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: 
-        radial-gradient(circle at 0% 50%, rgba(25,118,243,.10), transparent 45%),
-        radial-gradient(circle at 100% 50%, rgba(77,163,255,.08), transparent 40%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* ----- Floating Glows ----- */
-.skills-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    pointer-events: none;
-    z-index: 1;
-}
-
-.skills-glow.left {
-    width: 400px;
-    height: 400px;
-    top: -150px;
-    left: -140px;
-    background: rgba(25,118,243,.15);
-}
-
-.skills-glow.right {
-    width: 350px;
-    height: 350px;
-    bottom: -100px;
-    right: -120px;
-    background: rgba(77,163,255,.12);
 }
 
 /* =====================================================
@@ -148,19 +90,18 @@
    SKILLS PROGRESS CARD
    ===================================================== */
 .skills-progress-card {
-    padding: 2.5rem;
-    border-radius: 24px;
-    background: rgba(255,255,255,.04);
-    backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,.08);
-    box-shadow: 0 20px 50px rgba(0,0,0,.20);
-    transition: all .35s ease;
+    padding: 2rem;
+    border-radius: 22px;
+    background: rgba(10, 18, 32, 0.72);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 18px 35px rgba(2, 6, 23, 0.22);
+    transition: all .3s ease;
 }
 
 .skills-progress-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(25,118,243,.25);
-    box-shadow: 0 30px 60px rgba(25,118,243,.15);
+    transform: translateY(-4px);
+    border-color: rgba(96, 165, 250, 0.28);
+    box-shadow: 0 24px 45px rgba(37, 99, 235, 0.12);
 }
 
 /* ----- Card Title ----- */
@@ -186,7 +127,8 @@
 
 /* ----- Skill Item ----- */
 .skill-item {
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.4rem;
+    padding: .35rem 0;
 }
 
 .skill-item:last-child {
@@ -198,58 +140,62 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: .6rem;
+    margin-bottom: .55rem;
 }
 
 .skill-info {
     display: flex;
     align-items: center;
     gap: .8rem;
+    min-width: 0;
 }
 
 .skill-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 10px;
-    background: rgba(25,118,243,.12);
-    color: #4DA3FF;
-    font-size: 1rem;
-    transition: all .35s ease;
+    background: rgba(96, 165, 250, 0.12);
+    color: #7cc4ff;
+    font-size: 0.9rem;
+    transition: all .25s ease;
+    flex-shrink: 0;
 }
 
 .skill-item:hover .skill-icon {
-    background: #1976F3;
+    background: rgba(59, 130, 246, 0.24);
     color: #fff;
-    transform: scale(1.1) rotate(-6deg);
+    transform: translateY(-1px);
 }
 
 .skill-info span:last-child {
     color: #E2E8F0;
-    font-size: .95rem;
+    font-size: .92rem;
     font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .skill-percent {
-    color: #4DA3FF;
-    font-size: .9rem;
+    color: #93c5fd;
+    font-size: .82rem;
     font-weight: 700;
-    transition: all .35s ease;
+    transition: all .25s ease;
 }
 
 .skill-item:hover .skill-percent {
     color: #fff;
-    transform: scale(1.1);
 }
 
 /* ----- Progress Bar ----- */
 .progress-bar {
     width: 100%;
-    height: 6px;
+    height: 8px;
     border-radius: 999px;
-    background: rgba(255,255,255,.06);
+    background: rgba(148, 163, 184, 0.12);
     overflow: hidden;
     position: relative;
 }
@@ -257,8 +203,8 @@
 .progress-fill {
     height: 100%;
     border-radius: 999px;
-    background: linear-gradient(90deg, #1976F3, #4DA3FF);
-    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(90deg, #3b82f6, #7dd3fc);
+    transition: width 0.8s ease;
     position: relative;
 }
 
@@ -272,31 +218,24 @@
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,.3));
     border-radius: 999px;
-    animation: progressGlow 2s ease-in-out infinite;
-}
-
-@keyframes progressGlow {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
 }
 
 /* =====================================================
    TECH STACK CARD
    ===================================================== */
 .tech-stack-card {
-    padding: 2.5rem;
-    border-radius: 24px;
-    background: rgba(255,255,255,.04);
-    backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,.08);
-    box-shadow: 0 20px 50px rgba(0,0,0,.20);
-    transition: all .35s ease;
+    padding: 2rem;
+    border-radius: 22px;
+    background: rgba(10, 18, 32, 0.72);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 18px 35px rgba(2, 6, 23, 0.22);
+    transition: all .3s ease;
 }
 
 .tech-stack-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(25,118,243,.25);
-    box-shadow: 0 30px 60px rgba(25,118,243,.15);
+    transform: translateY(-4px);
+    border-color: rgba(96, 165, 250, 0.28);
+    box-shadow: 0 24px 45px rgba(37, 99, 235, 0.12);
 }
 
 /* ----- Card Title ----- */
@@ -322,19 +261,23 @@
 
 /* ----- Tech Group ----- */
 .tech-group {
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: .75rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 .tech-group:last-child {
     margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
 }
 
 .tech-group h4 {
-    color: #CBD5E1;
-    font-size: .85rem;
+    color: #d1d9e6;
+    font-size: .8rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     margin-bottom: .8rem;
 }
 
@@ -342,47 +285,45 @@
 .tech-badges {
     display: flex;
     flex-wrap: wrap;
-    gap: .6rem;
+    gap: .5rem;
 }
 
 .tech-badges span {
-    padding: .5rem 1.1rem;
+    padding: .45rem .8rem;
     border-radius: 999px;
-    background: rgba(255,255,255,.04);
-    border: 1px solid rgba(255,255,255,.06);
-    color: #E2E8F0;
-    font-size: .85rem;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    color: #dfe8f5;
+    font-size: .78rem;
     font-weight: 500;
-    transition: all .35s ease;
+    transition: all .25s ease;
     cursor: default;
 }
 
 .tech-badges span:hover {
-    transform: translateY(-4px) scale(1.02);
-    background: rgba(25,118,243,.12);
-    border-color: rgba(25,118,243,.25);
-    color: #4DA3FF;
-    box-shadow: 0 8px 25px rgba(25,118,243,.12);
+    transform: translateY(-2px);
+    background: rgba(59, 130, 246, 0.12);
+    border-color: rgba(96, 165, 250, 0.35);
+    color: #9ed1ff;
 }
 
 /* =====================================================
    WORKFLOW SECTION
    ===================================================== */
 .workflow-section {
-    padding: 2.5rem;
-    border-radius: 24px;
-    background: rgba(255,255,255,.04);
-    backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,.08);
-    box-shadow: 0 20px 50px rgba(0,0,0,.20);
+    padding: 2rem;
+    border-radius: 22px;
+    background: rgba(10, 18, 32, 0.72);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 18px 35px rgba(2, 6, 23, 0.22);
     margin-bottom: 4rem;
-    transition: all .35s ease;
+    transition: all .3s ease;
 }
 
 .workflow-section:hover {
-    transform: translateY(-6px);
-    border-color: rgba(25,118,243,.25);
-    box-shadow: 0 30px 60px rgba(25,118,243,.15);
+    transform: translateY(-4px);
+    border-color: rgba(96, 165, 250, 0.28);
+    box-shadow: 0 24px 45px rgba(37, 99, 235, 0.12);
 }
 
 /* ----- Workflow Title ----- */
@@ -419,52 +360,36 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .8rem;
+    gap: .75rem;
     flex: 1;
     position: relative;
+    min-width: 0;
 }
 
 /* ----- Workflow Icon ----- */
 .workflow-icon {
-    width: 70px;
-    height: 70px;
+    width: 62px;
+    height: 62px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background: rgba(25,118,243,.10);
-    border: 2px solid rgba(25,118,243,.15);
-    color: #4DA3FF;
-    font-size: 1.6rem;
-    transition: all .4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 18px;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(96, 165, 250, 0.18);
+    color: #7cc4ff;
+    font-size: 1.3rem;
+    transition: all .25s ease;
     position: relative;
     z-index: 2;
 }
 
 .workflow-item:hover .workflow-icon {
-    transform: translateY(-6px) scale(1.05);
-    background: #1976F3;
-    border-color: #1976F3;
+    transform: translateY(-3px);
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(96, 165, 250, 0.38);
     color: #fff;
-    box-shadow: 0 15px 40px rgba(25,118,243,.3);
 }
 
-/* ----- Workflow Icon Glow Effect ----- */
-.workflow-icon::before {
-    content: '';
-    position: absolute;
-    inset: -4px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, rgba(77,163,255,.2), rgba(25,118,243,.1));
-    opacity: 0;
-    transition: all .4s ease;
-    z-index: -1;
-}
-
-.workflow-item:hover .workflow-icon::before {
-    opacity: 1;
-    transform: scale(1.1);
-}
 
 /* ----- Workflow Label ----- */
 .workflow-item h5 {
@@ -622,56 +547,6 @@
     box-shadow: 0 10px 30px rgba(0,0,0,.20);
 }
 
-/* =====================================================
-   ANIMATIONS
-   ===================================================== */
-
-/* ----- Fade In Animations ----- */
-.skills-progress-card,
-.tech-stack-card,
-.workflow-section,
-.skills-footer-card {
-    animation: fadeInUp 0.8s ease forwards;
-}
-
-.skills-progress-card { animation-delay: 0.1s; }
-.tech-stack-card { animation-delay: 0.2s; }
-.workflow-section { animation-delay: 0.3s; }
-.skills-footer-card { animation-delay: 0.4s; }
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ----- Progress Bar Animation on Scroll ----- */
-.skill-item {
-    opacity: 0;
-    animation: skillFadeIn 0.6s ease forwards;
-}
-
-.skill-item:nth-child(1) { animation-delay: 0.1s; }
-.skill-item:nth-child(2) { animation-delay: 0.2s; }
-.skill-item:nth-child(3) { animation-delay: 0.3s; }
-.skill-item:nth-child(4) { animation-delay: 0.4s; }
-.skill-item:nth-child(5) { animation-delay: 0.5s; }
-
-@keyframes skillFadeIn {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
 
 /* =====================================================
    RESPONSIVE DESIGN
@@ -964,13 +839,60 @@
     }
 }
 
+@media (max-width: 360px) {
+    .skills-section {
+        padding: 2.5rem 0;
+    }
+
+    .skills-header {
+        margin-bottom: 2rem;
+    }
+
+    .skills-header h2 {
+        font-size: 1.35rem;
+        line-height: 1.3;
+    }
+
+    .skills-header p {
+        font-size: .85rem;
+        line-height: 1.6;
+    }
+
+    .skills-progress-card,
+    .tech-stack-card,
+    .workflow-section,
+    .skills-footer-card {
+        padding: 1rem;
+        border-radius: 16px;
+    }
+
+    .skill-info span:last-child,
+    .tech-badges span,
+    .workflow-item h5 {
+        font-size: .72rem;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+        justify-content: center;
+        padding: .75rem 1rem;
+        font-size: .82rem;
+    }
+
+    .footer-buttons {
+        flex-direction: column;
+        gap: .7rem;
+    }
+}
+
 /* =====================================================
    DARK MODE SUPPORT (Optional)
    ===================================================== */
 @media (prefers-color-scheme: light) {
     .skills-section {
-        background: #f8f9fa;
-        color: #1a1a2e;
+        background: #081225;
+        color: #e6eef8;
     }
     
     .skills-section::before {

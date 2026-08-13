@@ -8,6 +8,7 @@ import {
   FaStar,
 } from "react-icons/fa";
 
+import type { Project } from "../../types/project";
 import movieAppImg from "../../assets/movie-app.jpg";
 // import ecommerceImg from "../../assets/Components/projects/ecommerce.png";
 // import dashboardImg from "../../assets/Components/projects/dashboard.png";
@@ -30,50 +31,13 @@ const featuredProject = {
   live: "https://movie-demo.vercel.app",
 };
 
-const projects = [
-  {
-    title: "Student Marketplace",
-    image: movieAppImg,
-    description: "Marketplace for students.",
-    technologies: ["React", "Firebase"],
-    github: "#",
-    live: "#",
-    category: "Frontend",
-  },
+type ProjectsProps = {
+  projects?: Project[];
+};
 
-  {
-    title: "Portfolio Website",
-    image: movieAppImg,
-    description: "Personal portfolio website.",
-    technologies: ["React", "TypeScript"],
-    github: "#",
-    live: "#",
-    category: "React",
-  },
-
-  {
-    title: "Task Manager",
-    image: movieAppImg,
-    description: "Simple productivity application.",
-    technologies: ["React", "Node"],
-    github: "#",
-    live: "#",
-    category: "Full Stack",
-  },
-
-  {
-    title: "Weather Dashboard",
-    image: movieAppImg,
-    description: "Weather application using API.",
-    technologies: ["JavaScript"],
-    github: "#",
-    live: "#",
-    category: "Frontend",
-  },
-];
-
-const Projects = () => {
+const Projects = ({ projects = [] }: ProjectsProps) => {
   const [activeFilter, setActiveFilter] = useState("All");
+
   return (
     <section className="projects-section" id="projects">
       <div className="projects-glow left"></div>
@@ -242,14 +206,14 @@ const Projects = () => {
               {/* Screenshot */}
 
               <div className="project-image">
-                <img src={project.image} alt={project.title} />
+                <img src={project.image || movieAppImg} alt={project.title} />
 
                 <div className="project-overlay">
-                  <a href={project.live} target="_blank" rel="noreferrer">
+                  <a href={project.liveLink || "#"} target="_blank" rel="noreferrer">
                     <FaExternalLinkAlt />
                   </a>
 
-                  <a href={project.github} target="_blank" rel="noreferrer">
+                  <a href={project.githubLink || "#"} target="_blank" rel="noreferrer">
                     <FaGithub />
                   </a>
                 </div>
@@ -270,7 +234,7 @@ const Projects = () => {
 
                 <a
                   className="project-link"
-                  href={project.live}
+                  href={project.liveLink || "#"}
                   target="_blank"
                   rel="noreferrer"
                 >

@@ -12,50 +12,23 @@ import {
   FaRocket,
 } from "react-icons/fa";
 
-const skills = [
-  {
-    title: "Frontend Development",
-    level: 95,
-    icon: <FaLaptopCode />,
-  },
-  {
-    title: "React Ecosystem",
-    level: 90,
-    icon: <FaCode />,
-  },
-  {
-    title: "TypeScript",
-    level: 88,
-    icon: <FaCode />,
-  },
-  {
-    title: "Backend Development",
-    level: 72,
-    icon: <FaDatabase />,
-  },
-  {
-    title: "UI / UX",
-    level: 80,
-    icon: <FaPaintBrush />,
-  },
-];
+import type { SkillCategory } from "../../types/home";
 
-const techStack = [
+const fallbackSkills: SkillCategory[] = [
   {
-    title: "Languages",
-    items: ["JavaScript", "TypeScript", "Python", "HTML5", "CSS3"],
+    category: "Frontend",
+    skills: [
+      { name: "Frontend Development", level: 95, icon: <FaLaptopCode /> },
+      { name: "React Ecosystem", level: 90, icon: <FaCode /> },
+      { name: "TypeScript", level: 88, icon: <FaCode /> },
+    ],
   },
   {
-    title: "Frameworks",
-    items: ["React", "Bootstrap", "Next.js", "Vite"],
-  },
-  {
-    title: "Tools",
-    items: ["Git", "GitHub", "VS Code", "Postman", "Figma"],
-  },
-  {
-    title: "Currently Learning",
-    items: ["Node.js", "Express", "MongoDB", "Docker"],
+    category: "Backend",
+    skills: [
+      { name: "Backend Development", level: 72, icon: <FaDatabase /> },
+      { name: "UI / UX", level: 80, icon: <FaPaintBrush /> },
+    ],
   },
 ];
 
@@ -82,7 +55,13 @@ const workflow = [
   },
 ];
 
-const Skills = () => {
+type SkillsProps = {
+  skillCategories: SkillCategory[];
+};
+
+const Skills = ({ skillCategories }: SkillsProps) => {
+  const categories = skillCategories && skillCategories.length ? skillCategories : fallbackSkills;
+
   return (
     <section id="skills" className="skills-section">
       <div className="skills-glow left"></div>
@@ -114,28 +93,30 @@ const Skills = () => {
           <div className="skills-progress-card">
             <h3>Professional Skills</h3>
 
-            {skills.map((skill) => (
-              <div className="skill-item" key={skill.title}>
-                <div className="skill-title">
-                  <div className="skill-info">
-                    <span className="skill-icon">{skill.icon}</span>
+            {categories.flatMap((category) =>
+              category.skills.map((skill) => (
+                <div className="skill-item" key={`${category.category}-${skill.name}`}>
+                  <div className="skill-title">
+                    <div className="skill-info">
+                      <span className="skill-icon">{skill.icon}</span>
 
-                    <span>{skill.title}</span>
+                      <span>{skill.name}</span>
+                    </div>
+
+                    <span className="skill-percent">{skill.level}%</span>
                   </div>
 
-                  <span className="skill-percent">{skill.level}%</span>
+                  <div className="progress-bar">
+                    <div
+                      className="progress-fill"
+                      style={{
+                        width: `${skill.level}%`,
+                      }}
+                    ></div>
+                  </div>
                 </div>
-
-                <div className="progress-bar">
-                  <div
-                    className="progress-fill"
-                    style={{
-                      width: `${skill.level}%`,
-                    }}
-                  ></div>
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
 
           {/* RIGHT */}
@@ -143,13 +124,13 @@ const Skills = () => {
           <div className="tech-stack-card">
             <h3>Technology Stack</h3>
 
-            {techStack.map((group) => (
-              <div key={group.title} className="tech-group">
-                <h4>{group.title}</h4>
+            {categories.map((category) => (
+              <div key={category.category} className="tech-group">
+                <h4>{category.category}</h4>
 
                 <div className="tech-badges">
-                  {group.items.map((item) => (
-                    <span key={item}>{item}</span>
+                  {category.skills.map((skill) => (
+                    <span key={`${category.category}-${skill.name}`}>{skill.name}</span>
                   ))}
                 </div>
               </div>

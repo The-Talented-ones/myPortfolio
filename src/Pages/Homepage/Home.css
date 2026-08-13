@@ -2,14 +2,7 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(240, 253, 244, 0.95) 0%,
-      rgba(220, 252, 231, 0.95) 50%,
-      rgba(187, 247, 208, 0.95) 100%
-    ),
-    url("../../assets/talentedUsain.png");
+  background: #081225, url("../../assets/talentedUsain.png");
   background-size: cover;
   background-position: top 10% center;
   background-attachment: fixed;
@@ -18,12 +11,12 @@
 
 .hero-title {
   font-size: 2.5rem;
-  color: #1f2937;
+  color: #e6eef8;
 }
 
 .hero-subtitle {
   font-size: 1.2rem;
-  color: #475569;
+  color: #94a3b8;
 }
 
 .text-emerald {

@@ -5,8 +5,8 @@
 /* ----- Footer Container ----- */
 .footer-section {
     position: relative;
-    background: #070d18;
-    color: #e2e8f0;
+    background: #081225;
+    color: #e6eef8;
     overflow: hidden;
     padding: 0;
     margin-top: -1px;
@@ -595,7 +595,7 @@
    ===================================================== */
 @media (prefers-color-scheme: light) {
     .footer-section {
-        background: #f8f9fa;
+        background: #081225;
     }
     
     .footer-section::before {
