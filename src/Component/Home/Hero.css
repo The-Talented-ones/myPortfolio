@@ -1,53 +1,1893 @@
-:root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* =====================================================
+   HERO SECTION - GLOBAL LAYOUT
+===================================================== */
 
-  /* ===== LIGHT THEME (DEFAULT) ===== */
-  --bg: #f8fafc;
-  --bg-secondary: #ffffff;
-  --card-bg: #ffffff;
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 
-  --text: #1e293b;
-  --text-secondary: #64748b;
+  padding: 8rem 0 5rem;
 
-  --border: #e2e8f0;
+  background: #081225;
 
-  --primary: #10b981;
-  --primary-hover: #059669;
+  color: #f8fafc;
 
-  --nav-bg: rgba(33, 39, 45, 0.92);
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-.hero-section {
-  background-color: var(--bg);
-  color: var(--text);
-  margin-top:50px ;
+  isolation: isolate;
 }
 
-.hero-subtitle {
-  color: var(--text-secondary);
-}
-.hero-btn-primary{
-  background-color: var(--primary);
-  color: var(--text) ;
-}
-.hero-btn-outline{
-    border: 2px solid #059669;
+/* ==========================================
+   Container
+========================================== */
+
+.hero .container {
+  position: relative;
+  z-index: 10;
+
+  width: min(1200px, 92%);
+  margin-inline: auto;
 }
 
-.stat-card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  border-radius: 12px;
+/* ==========================================
+   Two Column Layout
+========================================== */
+
+.hero-wrapper {
+  display: grid;
+
+  grid-template-columns: 1.1fr 0.9fr;
+
+  align-items: center;
+
+  gap: 5rem;
 }
+
+/* ==========================================
+   Left & Right Columns
+========================================== */
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ==========================================
+   Background Grid
+========================================== */
+
+.hero-grid-bg {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  background-image:
+
+    linear-gradient(
+      rgba(255,255,255,.04) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.04) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+
+  opacity: .25;
+
+  mask-image: radial-gradient(
+      circle at center,
+      black 45%,
+      transparent 95%
+  );
+}
+
+/* ==========================================
+   Blue Glow Effects
+========================================== */
+
+.hero-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(120px);
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+.hero-glow-1 {
+  width: 420px;
+  height: 420px;
+
+  background: rgba(25,118,243,.35);
+
+  top: -140px;
+  left: -120px;
+}
+
+.hero-glow-2 {
+  width: 350px;
+  height: 350px;
+
+  background: rgba(77,163,255,.25);
+
+  bottom: -100px;
+  right: -80px;
+}
+
+/* ==========================================
+   Decorative Gradient Overlay
+========================================== */
+
+.hero::before {
+
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(25,118,243,.12),
+      transparent 40%
+    ),
+
+    radial-gradient(
+      circle at bottom right,
+      rgba(77,163,255,.08),
+      transparent 35%
+    );
+
+  z-index: 0;
+}
+
+/* ==========================================
+   Stats Container
+========================================== */
+
+.hero-stats {
+
+  margin-top: 6rem;
+
+  display: grid;
+
+  grid-template-columns: repeat(4,1fr);
+
+  gap: 1.5rem;
+}
+
+/* ==========================================
+   Smooth Entrance
+========================================== */
+
+.hero-content,
+.hero-panel,
+.hero-stats {
+
+  animation: heroFade .9s ease forwards;
+}
+
+@keyframes heroFade {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(30px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width: 992px) {
+
+  .hero {
+
+    padding-top: 7rem;
+
+    min-height: auto;
+  }
+
+  .hero-wrapper {
+
+    grid-template-columns: 1fr;
+
+    gap: 4rem;
+  }
+
+  .hero-panel {
+
+    order: -1;
+  }
+
+  .hero-stats {
+
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media (max-width: 576px) {
+
+  .hero {
+
+    padding: 6.5rem 0 4rem;
+  }
+
+  .hero-stats {
+
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid-bg {
+
+    background-size: 36px 36px;
+  }
+
+  .hero-glow-1 {
+
+    width: 280px;
+    height: 280px;
+  }
+
+  .hero-glow-2 {
+
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/* =====================================================
+   LEFT CONTENT
+===================================================== */
+
+.hero-content{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+/* =====================================================
+   Available Badge
+===================================================== */
+
+.hero-badge{
+
+    display:inline-flex;
+    align-items:center;
+    gap:.75rem;
+
+    width:fit-content;
+
+    padding:.65rem 1.25rem;
+
+    margin-bottom:2rem;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(16px);
+
+    color:#E5E7EB;
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+    letter-spacing:.4px;
+}
+
+/* animated green dot */
+
+.hero-status{
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#22C55E;
+
+    position:relative;
+}
+
+.hero-status::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-5px;
+
+    border-radius:50%;
+
+    border:2px solid #22C55E;
+
+    animation:statusPulse 2s infinite;
+}
+
+@keyframes statusPulse{
+
+    from{
+
+        transform:scale(1);
+
+        opacity:1;
+    }
+
+    to{
+
+        transform:scale(2.6);
+
+        opacity:0;
+    }
+}
+
+/* =====================================================
+   Hero Title
+===================================================== */
+
+.hero-title{
+
+    font-size:clamp(3rem,6vw,5rem);
+
+    line-height:1.05;
+
+    font-weight:800;
+
+    margin-bottom:1.5rem;
+
+    color:#fff;
+
+    max-width:720px;
+}
+
+.hero-title span{
+
+    display:block;
+
+    margin-top:.4rem;
+
+    background:linear-gradient(
+        135deg,
+        #4DA3FF,
+        #1976F3,
+        #1257E5
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    background-clip:text;
+}
+
+/* =====================================================
+   Description
+===================================================== */
+
+.hero-description{
+
+    max-width:620px;
+
+    font-size:1.1rem;
+
+    line-height:1.9;
+
+    color:#AEB8CC;
+
+    margin-bottom:2.5rem;
+}
+
+/* =====================================================
+   CTA Buttons
+===================================================== */
+
+.hero-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:1rem;
+
+    margin-bottom:2.5rem;
+}
+
+/* shared */
+
+.hero-actions a{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:.8rem;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    padding:1rem 1.8rem;
+
+    border-radius:14px;
+
+    transition:.35s ease;
+}
+
+/* primary */
+
+.btn-primary{
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        #1976F3,
+        #1257E5
+    );
+
+    box-shadow:
+    0 15px 40px rgba(25,118,243,.35);
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-4px);
+
+    color:#fff;
+
+    box-shadow:
+    0 22px 50px rgba(25,118,243,.45);
+}
+
+/* secondary */
+
+.btn-secondary{
+
+    color:#E5E7EB;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:rgba(255,255,255,.04);
+
+    backdrop-filter:blur(16px);
+}
+
+.btn-secondary:hover{
+
+    transform:translateY(-4px);
+
+    color:#fff;
+
+    border-color:#1976F3;
+
+    background:rgba(25,118,243,.08);
+}
+
+/* =====================================================
+   Tech Stack
+===================================================== */
+
+.hero-tech{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:1rem;
+}
+
+.tech-chip{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.6rem;
+
+    padding:.8rem 1rem;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    color:#E5E7EB;
+
+    transition:.3s ease;
+
+    cursor:default;
+
+    backdrop-filter:blur(12px);
+}
+
+.tech-chip svg{
+
+    font-size:1.2rem;
+
+    color:#4DA3FF;
+}
+
+.tech-chip:hover{
+
+    transform:translateY(-6px);
+
+    border-color:#1976F3;
+
+    background:rgba(25,118,243,.12);
+
+    box-shadow:
+    0 12px 30px rgba(25,118,243,.20);
+}
+
+.tech-chip span{
+
+    font-size:.95rem;
+
+    font-weight:500;
+}
+
+/* =====================================================
+   Responsive
+===================================================== */
+
+@media(max-width:992px){
+
+    .hero-content{
+
+        text-align:center;
+
+        align-items:center;
+    }
+
+    .hero-description{
+
+        margin-inline:auto;
+    }
+
+    .hero-actions{
+
+        justify-content:center;
+    }
+
+    .hero-tech{
+
+        justify-content:center;
+    }
+}
+
+@media(max-width:576px){
+
+    .hero-title{
+
+        font-size:2.8rem;
+    }
+
+    .hero-description{
+
+        font-size:1rem;
+
+        line-height:1.7;
+    }
+
+    .hero-actions{
+
+        width:100%;
+    }
+
+    .hero-actions a{
+
+        width:100%;
+    }
+
+    .hero-tech{
+
+        gap:.75rem;
+    }
+
+    .tech-chip{
+
+        padding:.7rem .9rem;
+    }
+}
+
+
+/* =====================================================
+   RIGHT PANEL
+===================================================== */
+
+.hero-panel{
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+/* =====================================================
+   Floating Effect
+===================================================== */
+
+.terminal-card{
+
+    position:relative;
+
+    width:100%;
+
+    max-width:500px;
+
+    overflow:hidden;
+
+    border-radius:24px;
+
+    background:rgba(13,23,42,.72);
+
+    backdrop-filter:blur(24px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.35),
+        0 0 0 1px rgba(25,118,243,.08);
+
+    animation:floatCard 6s ease-in-out infinite;
+
+    transition:.35s ease;
+}
+
+.terminal-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:
+        0 35px 70px rgba(25,118,243,.18),
+        0 0 40px rgba(25,118,243,.10);
+}
+
+/* =====================================================
+   Terminal Header
+===================================================== */
+
+.terminal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:1rem 1.4rem;
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+    background:rgba(255,255,255,.03);
+}
+
+.terminal-header p{
+
+    color:#B8C5E1;
+
+    margin:0;
+
+    font-size:.9rem;
+
+    letter-spacing:.5px;
+}
+
+/* =====================================================
+   Mac Dots
+===================================================== */
+
+.terminal-dots{
+
+    display:flex;
+
+    gap:.5rem;
+}
+
+.terminal-dots span{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+}
+
+.terminal-dots span:nth-child(1){
+
+    background:#FF5F57;
+}
+
+.terminal-dots span:nth-child(2){
+
+    background:#FEBC2E;
+}
+
+.terminal-dots span:nth-child(3){
+
+    background:#28C840;
+}
+
+/* =====================================================
+   Body
+===================================================== */
+
+.terminal-body{
+
+    padding:2rem;
+}
+
+.terminal-body p{
+
+    margin-bottom:1.8rem;
+
+    color:#E5E7EB;
+
+    font-size:1rem;
+}
+
+.prompt{
+
+    color:#4DA3FF;
+
+    font-weight:700;
+
+    margin-right:.5rem;
+}
+
+/* =====================================================
+   Output
+===================================================== */
+
+.terminal-output{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:1rem;
+}
+
+.terminal-output div{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.75rem;
+
+    color:#CBD5E1;
+
+    padding:.65rem .9rem;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.04);
+
+    transition:.3s ease;
+}
+
+.terminal-output div:hover{
+
+    transform:translateX(8px);
+
+    background:rgba(25,118,243,.10);
+
+    border-color:rgba(25,118,243,.25);
+}
+
+.terminal-output svg{
+
+    color:#22C55E;
+
+    font-size:1.1rem;
+}
+
+/* =====================================================
+   Status
+===================================================== */
+
+.terminal-status{
+
+    margin-top:2rem;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:.75rem;
+
+    padding:.9rem 1rem;
+
+    border-radius:999px;
+
+    background:rgba(34,197,94,.08);
+
+    border:1px solid rgba(34,197,94,.20);
+
+    color:#22C55E;
+
+    font-weight:600;
+}
+
+.status-dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#22C55E;
+
+    animation:pulse 2s infinite;
+}
+
+/* =====================================================
+   Social Icons
+===================================================== */
+
+.hero-socials{
+
+    margin-top:2rem;
+
+    display:flex;
+
+    gap:1rem;
+}
+
+.hero-socials a{
+
+    width:52px;
+
+    height:52px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-decoration:none;
+
+    border-radius:16px;
+
+    color:#E5E7EB;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(16px);
+
+    transition:.3s ease;
+}
+
+.hero-socials a:hover{
+
+    transform:translateY(-6px);
+
+    color:#fff;
+
+    background:#1976F3;
+
+    border-color:#1976F3;
+
+    box-shadow:
+        0 15px 35px rgba(25,118,243,.30);
+}
+
+/* =====================================================
+   Floating Animation
+===================================================== */
+
+@keyframes floatCard{
+
+    0%{
+
+        transform:translateY(0px);
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+    }
+
+    100%{
+
+        transform:translateY(0px);
+    }
+}
+
+/* =====================================================
+   Pulse
+===================================================== */
+
+@keyframes pulse{
+
+    0%{
+
+        opacity:1;
+
+        transform:scale(1);
+    }
+
+    50%{
+
+        opacity:.5;
+
+        transform:scale(1.4);
+    }
+
+    100%{
+
+        opacity:1;
+
+        transform:scale(1);
+    }
+}
+
+/* =====================================================
+   Responsive
+===================================================== */
+
+@media(max-width:992px){
+
+    .hero-panel{
+
+        margin-bottom:3rem;
+    }
+
+    .terminal-card{
+
+        max-width:650px;
+    }
+}
+
+@media(max-width:576px){
+
+    .terminal-body{
+
+        padding:1.5rem;
+    }
+
+    .terminal-output div{
+
+        font-size:.9rem;
+    }
+
+    .hero-socials a{
+
+        width:46px;
+
+        height:46px;
+    }
+}
+
+
+/* =====================================================
+   STATS SECTION
+===================================================== */
+
+.hero-stats{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:1.5rem;
+
+    margin-top:6rem;
+
+    position:relative;
+
+    z-index:10;
+}
+
+/* =====================================================
+   Card
+===================================================== */
+
+.stat-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:2rem;
+
+    border-radius:24px;
+
+    /* background:rgba(255,255,255,.04); */
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.35s ease;
+
+    cursor:pointer;
+}
+
+/* subtle gradient overlay */
+
+.stat-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    transition:.35s;
+}
+
+.stat-card:hover::before{
+
+    opacity:1;
+}
+
+/* glowing border */
+
+.stat-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-1px;
+
+    border-radius:24px;
+
+    padding:1px;
+
+    background:linear-gradient(
+        135deg,
+        rgba(25,118,243,.45),
+        transparent,
+        rgba(77,163,255,.25)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    opacity:0;
+
+    transition:.35s;
+}
+
+.stat-card:hover::after{
+
+    opacity:1;
+}
+
 .stat-card:hover{
-  background-color: var(--bg-secondary);
-  border-color: var(--primary);
-  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.2);
+
+    transform:translateY(-12px);
+
+    box-shadow:
+        0 30px 60px rgba(25,118,243,.20);
+
+    border-color:rgba(25,118,243,.25);
+}
+
+/* =====================================================
+   Icon
+===================================================== */
+
+.stat-icon{
+
+    width:64px;
+
+    height:64px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:1.5rem;
+
+    border-radius:18px;
+
+    color:#081225;
+
+    font-size:1.5rem;
+
+    transition:.35s;
+}
+.stat-icon svg{
+    color: inherit;
+    fill: currentColor;
+}
+
+.stat-card:hover .stat-icon{
+
+    transform:rotate(-10deg) scale(1.08);
+
+    box-shadow:
+        0 15px 35px rgba(25,118,243,.35);
+}
+
+/* =====================================================
+   Value
+===================================================== */
+
+.stat-card h2{
+
+    margin:0;
+
+    font-size:2.3rem;
+
+    font-weight:800;
+
+    color: #1257E5;
+
+    line-height:1.1;
+}
+
+/* =====================================================
+   Label
+===================================================== */
+
+.stat-card p{
+
+    margin-top:.6rem;
+
+    margin-bottom:0;
+
+    color:#081225 ;
+
+    font-size:1rem;
+
+    line-height:1.6;
+}
+
+/* =====================================================
+   Decorative Corner Glow
+===================================================== */
+
+.stat-card .corner-glow{
+
+    position:absolute;
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    top:-35px;
+
+    right:-35px;
+
+    background:rgba(25,118,243,.18);
+
+    filter:blur(45px);
+
+    pointer-events:none;
+}
+
+/* =====================================================
+   Hover Shine
+===================================================== */
+
+.stat-card .shine{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.12),
+        transparent
+    );
+
+    transform:translateX(-150%);
+
+    transition:.8s;
+}
+
+.stat-card:hover .shine{
+
+    transform:translateX(150%);
+}
+
+/* =====================================================
+   Responsive
+===================================================== */
+
+@media(max-width:992px){
+
+    .hero-stats{
+
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:576px){
+
+    .hero-stats{
+
+        grid-template-columns:1fr;
+
+        gap:1rem;
+
+        margin-top:4rem;
+    }
+
+    .stat-card{
+
+        padding:1.6rem;
+    }
+
+    .stat-icon{
+
+        width:56px;
+
+        height:56px;
+
+        font-size:1.3rem;
+    }
+
+    .stat-card h2{
+
+        font-size:2rem;
+    }
+
+}
+
+
+
+
+/* =====================================================
+   HERO ANIMATIONS
+===================================================== */
+
+/* Smooth transitions */
+
+.hero *{
+    transition:
+        background-color .35s ease,
+        color .35s ease,
+        border-color .35s ease,
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+/* ==========================================
+   Fade Up
+========================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+    }
+
+}
+
+/* ==========================================
+   Fade In
+========================================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+    }
+
+    to{
+
+        opacity:1;
+    }
+
+}
+
+/* ==========================================
+   Float
+========================================== */
+
+@keyframes floating{
+
+    0%{
+
+        transform:translateY(0px);
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+    }
+
+    100%{
+
+        transform:translateY(0px);
+    }
+
+}
+
+/* ==========================================
+   Glow Pulse
+========================================== */
+
+@keyframes glow{
+
+    0%{
+
+        opacity:.35;
+
+        transform:scale(1);
+    }
+
+    50%{
+
+        opacity:.7;
+
+        transform:scale(1.08);
+    }
+
+    100%{
+
+        opacity:.35;
+
+        transform:scale(1);
+    }
+
+}
+
+/* ==========================================
+   Grid Drift
+========================================== */
+
+@keyframes gridMove{
+
+    from{
+
+        background-position:
+        0 0,
+        0 0;
+    }
+
+    to{
+
+        background-position:
+        50px 50px,
+        50px 50px;
+    }
+
+}
+
+/* ==========================================
+   Shine
+========================================== */
+
+@keyframes shine{
+
+    from{
+
+        transform:translateX(-140%);
+    }
+
+    to{
+
+        transform:translateX(140%);
+    }
+
+}
+
+/* ==========================================
+   Hero Entrance
+========================================== */
+
+.hero-badge{
+
+    animation:
+        fadeUp .6s ease forwards;
+}
+
+.hero-title{
+
+    opacity:0;
+
+    animation:
+        fadeUp .8s .15s ease forwards;
+}
+
+.hero-description{
+
+    opacity:0;
+
+    animation:
+        fadeUp .8s .3s ease forwards;
+}
+
+.hero-actions{
+
+    opacity:0;
+
+    animation:
+        fadeUp .8s .45s ease forwards;
+}
+
+.hero-tech{
+
+    opacity:0;
+
+    animation:
+        fadeUp .8s .6s ease forwards;
+}
+
+.hero-panel{
+
+    opacity:0;
+
+    animation:
+        fadeUp 1s .25s ease forwards;
+}
+
+.hero-stats{
+
+    opacity:0;
+
+    animation:
+        fadeUp .9s .75s ease forwards;
+}
+
+/* ==========================================
+   Floating Terminal
+========================================== */
+
+.terminal-card{
+
+    animation:
+        floating 6s ease-in-out infinite;
+}
+
+/* ==========================================
+   Animated Glows
+========================================== */
+
+.hero-glow-1{
+
+    animation:
+        glow 8s ease-in-out infinite;
+}
+
+.hero-glow-2{
+
+    animation:
+        glow 10s ease-in-out infinite reverse;
+}
+
+/* ==========================================
+   Animated Grid
+========================================== */
+
+.hero-grid-bg{
+
+    animation:
+        gridMove 20s linear infinite;
+}
+
+/* ==========================================
+   Button Hover
+========================================== */
+
+.btn-primary:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+}
+
+.btn-secondary:hover{
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+}
+
+/* ==========================================
+   Tech Chips
+========================================== */
+
+.tech-chip:hover{
+
+    transform:
+        translateY(-6px)
+        scale(1.04);
+}
+
+/* ==========================================
+   Social Icons
+========================================== */
+
+.hero-socials a:hover{
+
+    transform:
+        translateY(-6px)
+        rotate(-8deg);
+}
+
+/* ==========================================
+   Stats
+========================================== */
+
+.stat-card:hover{
+
+    transform:
+        translateY(-10px)
+        scale(1.02);
+}
+
+/* ==========================================
+   Mouse Movement
+========================================== */
+
+.hero-panel:hover .terminal-card{
+
+    transform:
+        perspective(1200px)
+        rotateX(2deg)
+        rotateY(-2deg);
+}
+
+/* ==========================================
+   Reduced Motion
+========================================== */
+
+@media (prefers-reduced-motion: reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation:none !important;
+
+        transition:none !important;
+    }
+
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+/* ==========================================
+   Large Laptops
+========================================== */
+
+@media (max-width:1200px){
+
+    .hero-wrapper{
+
+        gap:4rem;
+    }
+
+    .hero-title{
+
+        font-size:4rem;
+    }
+
+    .terminal-card{
+
+        max-width:460px;
+    }
+
+}
+
+/* ==========================================
+   Tablets
+========================================== */
+
+@media (max-width:992px){
+
+    .hero{
+
+        padding-top:7rem;
+        padding-bottom:5rem;
+
+        min-height:auto;
+    }
+
+    .hero-wrapper{
+
+        grid-template-columns:1fr;
+
+        gap:4rem;
+    }
+
+    /* Put text first */
+
+    .hero-content{
+
+        order:1;
+
+        text-align:center;
+
+        align-items:center;
+    }
+
+    .hero-panel{
+
+        order:2;
+    }
+
+    .hero-description{
+
+        max-width:700px;
+
+        margin-inline:auto;
+    }
+
+    .hero-actions{
+
+        justify-content:center;
+    }
+
+    .hero-tech{
+
+        justify-content:center;
+    }
+
+    .hero-stats{
+
+        grid-template-columns:repeat(2,1fr);
+
+        margin-top:4rem;
+    }
+
+    .terminal-card{
+
+        max-width:650px;
+    }
+
+}
+
+/* ==========================================
+   Mobile
+========================================== */
+
+@media (max-width:768px){
+
+    .hero{
+
+        padding-top:6.5rem;
+    }
+
+    .hero-title{
+
+        font-size:3rem;
+
+        line-height:1.15;
+    }
+
+    .hero-description{
+
+        font-size:1rem;
+
+        line-height:1.8;
+    }
+
+    .hero-actions{
+
+        width:100%;
+
+        flex-direction:column;
+    }
+
+    .hero-actions a{
+
+        width:100%;
+
+        justify-content:center;
+    }
+
+    .hero-tech{
+
+        justify-content:center;
+
+        gap:.75rem;
+    }
+
+    .tech-chip{
+
+        padding:.75rem 1rem;
+
+        font-size:.9rem;
+    }
+
+    .terminal-body{
+
+        padding:1.5rem;
+    }
+
+    .terminal-output div{
+
+        font-size:.9rem;
+    }
+
+    .hero-socials{
+
+        justify-content:center;
+    }
+
+}
+
+/* ==========================================
+   Small Phones
+========================================== */
+
+@media (max-width:480px){
+
+    .hero{
+
+        padding-top:6rem;
+        padding-bottom:4rem;
+    }
+
+    .hero-title{
+
+        font-size:2.4rem;
+    }
+
+    .hero-badge{
+
+        font-size:.8rem;
+
+        padding:.55rem 1rem;
+    }
+
+    .hero-description{
+
+        font-size:.95rem;
+    }
+
+    .hero-stats{
+
+        grid-template-columns:1fr;
+
+        gap:1rem;
+    }
+
+    .stat-card{
+
+        padding:1.5rem;
+    }
+
+    .stat-icon{
+
+        width:56px;
+        height:56px;
+
+        font-size:1.3rem;
+    }
+
+    .stat-card h2{
+
+        font-size:2rem;
+    }
+
+    .terminal-header{
+
+        padding:.85rem 1rem;
+    }
+
+    .terminal-body{
+
+        padding:1.25rem;
+    }
+
+    .terminal-header p{
+
+        font-size:.8rem;
+    }
+
+    .terminal-output{
+
+        gap:.75rem;
+    }
+
+    .terminal-output div{
+
+        padding:.6rem .75rem;
+
+        font-size:.85rem;
+    }
+
+    .hero-socials a{
+
+        width:46px;
+        height:46px;
+    }
+
+}
+
+/* ==========================================
+   Ultra Wide Screens
+========================================== */
+
+@media (min-width:1600px){
+
+    .hero .container{
+
+        max-width:1450px;
+    }
+
+    .hero-title{
+
+        font-size:5.8rem;
+    }
+
+    .hero-description{
+
+        font-size:1.25rem;
+    }
+
+    .terminal-card{
+
+        max-width:560px;
+    }
+
 }

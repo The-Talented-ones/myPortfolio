@@ -1,96 +1,209 @@
-// Footer.tsx
-import { FaEnvelope, FaGithub, FaLinkedin, FaTwitter, FaMapMarkerAlt, FaPhone, FaCode } from 'react-icons/fa';
-import profileImg from '../../assets/profile.png';
-import './Footer.css';
+import {
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaArrowUp,
+  FaHeart,
+} from "react-icons/fa";
+import "./Footer.css";
 
 const Footer = () => {
-    return (
-        <footer className="footer">
-            <div className="container">
-                {/* Main Footer Content */}
-                <div className="footer-grid">
-                    {/* Brand Column */}
-                    <div className="footer-brand-col">
-                        <div className="brand-container">
-                            {/* Modern Logo */}
-                            <div className="logo-wrapper">
-                                <img src={profileImg} className="footer-logo-img" alt="Profile" />
-                                <div className="logo-text">
-                                    <span className="logo-main">TALENTEDUSAIN</span>
-                                    <span className="logo-sub">WEB DEVELOPER</span>
-                                </div>
-                            </div>
+  const navigation = [
+    {
+      label: "Home",
+      href: "#home",
+    },
+    {
+      label: "About",
+      href: "#about",
+    },
+    {
+      label: "Projects",
+      href: "#projects",
+    },
+    {
+      label: "Skills",
+      href: "#skills",
+    },
+    {
+      label: "Contact",
+      href: "#contact",
+    },
+  ];
 
-                            <p className="brand-description">
-                                The trusted platform for campus services and skill exchange. 
-                                Connecting students with reliable providers.
-                            </p>
+  const socials = [
+    {
+      icon: FaGithub,
+      label: "GitHub",
+      href: "https://github.com/talentedusain",
+    },
+    {
+      icon: FaLinkedin,
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/oloyede-ameer-306569276/",
+    },
+    {
+      icon: FaTwitter,
+      label: "Twitter",
+      href: "https://twitter.com/talentedusain",
+    },
+  ];
 
-                            {/* Social Links */}
-                            <div className="social-links">
-                                <a href="#" className="social-link" aria-label="GitHub">
-                                    <FaGithub />
-                                </a>
-                                <a href="https://x.com/The Talented_dev" className="social-link" aria-label="Twitter">
-                                    <FaTwitter />
-                                </a>
-                                <a href="https://www.linkedin.com/in/oloyede-ameer-306569276/" className="social-link" aria-label="LinkedIn">
-                                    <FaLinkedin />
-                                </a>
-                                <a href="#" className="social-link" aria-label="Email">
-                                    <FaEnvelope />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
-                    {/* Quick Links */}
-                    <div className="footer-links-col">
-                        <h3 className="footer-title">Quick Links</h3>
-                        <ul className="footer-list">
-                            <li><a href="#home">Home</a></li>
-                            <li><a href="#services">About us </a></li>
-                            <li><a href="#how-it-works">Skills</a></li>
-                            <li><a href="#projects">Project</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
+  return (
+    <footer className="footer-section">
 
-                  
+      {/* =========================================
+          TOP ACCENT LINE
+      ========================================= */}
 
-                    {/* Contact Info */}
-                    <div className="footer-contact-col">
-                        <h3 className="footer-title">Contact Us</h3>
-                        <ul className="contact-list">
-                            <li>
-                                <FaEnvelope className="contact-icon" />
-                                <span>talentedUsain2k1@gmail.com</span>
-                            </li>
-                            <li>
-                                <FaPhone className="contact-icon" />
-                                <span>+234 806 146 5119</span>
-                            </li>
-                            <li className="address-item">
-                                <FaMapMarkerAlt className="contact-icon" />
-                                <div>
-                                    <p>Osun State University,Urp</p>
-                                    <p>University Main Campus</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+      <div className="footer-accent-line" />
 
-                {/* Footer Bottom */}
-                <div className="footer-bottom">
-                    <div className="copyright">
-                        <FaCode className="copyright-icon" />
-                        <p>© {new Date().getFullYear()} TALENTEDUSAIN_DEV. All rights reserved. Designed by a web developer.</p>
-                    </div>
-                </div>
+      <div className="container">
+
+        {/* =========================================
+            MAIN FOOTER
+        ========================================= */}
+
+        <div className="footer-main">
+
+          {/* =======================================
+              BRAND
+          ======================================= */}
+
+          <div className="footer-brand">
+
+            <a
+              href="#home"
+              className="footer-logo"
+            >
+              TALENTEDUSAIN
+              <span>_DEV</span>
+            </a>
+
+            <p className="footer-description">
+              Building modern digital experiences
+              that combine clean design, solid
+              engineering, and real-world value.
+            </p>
+
+            {/* Social Links */}
+
+            <div className="footer-socials">
+
+              {socials.map((social) => {
+                const Icon = social.icon;
+
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="footer-social-link"
+                  >
+                    <Icon />
+                  </a>
+                );
+              })}
+
             </div>
-        </footer>
-    );
+
+          </div>
+
+          {/* =======================================
+              NAVIGATION
+          ======================================= */}
+
+          <div className="footer-navigation">
+
+            <span className="footer-heading">
+              Navigation
+            </span>
+
+            <nav>
+              {navigation.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="footer-nav-link"
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+
+          </div>
+
+          {/* =======================================
+              CTA
+          ======================================= */}
+
+          <div className="footer-cta">
+
+            <span className="footer-heading">
+              Have a project?
+            </span>
+
+            <p>
+              Let's turn your idea into
+              something meaningful.
+            </p>
+
+            <a
+              href="#contact"
+              className="footer-cta-link"
+            >
+              Let's work together
+              <span>→</span>
+            </a>
+
+          </div>
+
+        </div>
+
+        {/* =========================================
+            FOOTER BOTTOM
+        ========================================= */}
+
+        <div className="footer-bottom">
+
+          <div className="footer-copyright">
+            © {new Date().getFullYear()} TalentedUsain.
+            All rights reserved.
+          </div>
+
+          <div className="footer-built">
+
+            Built with
+            <FaHeart className="footer-heart" />
+            React & TypeScript
+
+          </div>
+
+          {/* Back To Top */}
+
+          <button
+            type="button"
+            className="footer-top-button"
+            onClick={scrollToTop}
+            aria-label="Back to top"
+          >
+            <FaArrowUp />
+          </button>
+
+        </div>
+
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

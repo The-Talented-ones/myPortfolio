@@ -1,92 +1,321 @@
-import { useEffect, useRef, useState } from "react";
-import type { Project } from "../../types/project";
-import ProjectCard from "../ProjectCard/ProjectCard";
+import "./Projects.css";
+import { useState } from "react";
 
-interface ProjectsProps {
-  projects: Project[];
-}
+import {
+  FaArrowRight,
+  FaExternalLinkAlt,
+  FaGithub,
+  FaStar,
+} from "react-icons/fa";
 
-const Projects: React.FC<ProjectsProps> = ({ projects }) => {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
+import movieAppImg from "../../assets/movie-app.jpg";
+// import ecommerceImg from "../../assets/Components/projects/ecommerce.png";
+// import dashboardImg from "../../assets/Components/projects/dashboard.png";
 
-  const updateScrollButtons = () => {
-    const el = scrollRef.current;
-    if (!el) return;
+const categories = ["All", "Frontend", "Full Stack", "React", "Python"];
 
-    setCanScrollPrev(el.scrollLeft > 0);
-    setCanScrollNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
-  };
+const featuredProject = {
+  title: "Movie Discovery Platform",
+  description:
+    "A Netflix-inspired movie discovery platform built with React, TypeScript and the TMDB API. Users can explore trending movies, browse by genres, search for titles and enjoy a clean, responsive interface.",
 
-  useEffect(() => {
-    updateScrollButtons();
-  }, [projects]);
+  image: movieAppImg,
 
-  const scrollBy = (direction: "left" | "right") => {
-    const el = scrollRef.current;
-    if (!el) return;
+  technologies: ["React", "TypeScript", "Bootstrap", "TMDB API", "Axios"],
 
-    const amount = Math.min(el.clientWidth * 0.8, 380);
-    el.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
-  };
+  features: ["Authentication", "Responsive", "Dark Mode", "REST API"],
 
+  github: "https://github.com/talentedusain",
+
+  live: "https://movie-demo.vercel.app",
+};
+
+const projects = [
+  {
+    title: "Student Marketplace",
+    image: movieAppImg,
+    description: "Marketplace for students.",
+    technologies: ["React", "Firebase"],
+    github: "#",
+    live: "#",
+    category: "Frontend",
+  },
+
+  {
+    title: "Portfolio Website",
+    image: movieAppImg,
+    description: "Personal portfolio website.",
+    technologies: ["React", "TypeScript"],
+    github: "#",
+    live: "#",
+    category: "React",
+  },
+
+  {
+    title: "Task Manager",
+    image: movieAppImg,
+    description: "Simple productivity application.",
+    technologies: ["React", "Node"],
+    github: "#",
+    live: "#",
+    category: "Full Stack",
+  },
+
+  {
+    title: "Weather Dashboard",
+    image: movieAppImg,
+    description: "Weather application using API.",
+    technologies: ["JavaScript"],
+    github: "#",
+    live: "#",
+    category: "Frontend",
+  },
+];
+
+const Projects = () => {
+  const [activeFilter, setActiveFilter] = useState("All");
   return (
-    <section id="projects" className="py-5 bg-light">
-      <style>
-        {`
-          #projects .overflow-auto::-webkit-scrollbar {
-            display: none;
-          }
-        `}
-      </style>
+    <section className="projects-section" id="projects">
+      <div className="projects-glow left"></div>
+      <div className="projects-glow right"></div>
+
       <div className="container">
-        <div className="d-flex flex-column flex-md-row align-items-start justify-content-between mb-4 gap-3 text-center text-md-start">
-          <div>
-            <h2 className="fw-bold mb-2">
-              Featured <span className="text-emerald">Projects</span>
-            </h2>
-            <p className="text-muted mb-0">Swipe or use the arrows to browse through the project cards.</p>
+        {/* ================= HEADER ================= */}
+
+        <div className="projects-header">
+          <span className="section-badge">FEATURED PROJECTS</span>
+
+          <h2>
+            Turning Ideas Into
+            <span> Digital Experiences</span>
+          </h2>
+
+          <p>
+            A collection of projects demonstrating my passion for building
+            modern, scalable and user-focused web applications.
+          </p>
+        </div>
+
+        {/* ================= FILTER ================= */}
+
+        <div className="project-filter">
+          {categories.map((item) => (
+            <button
+              key={item}
+              className={`filter-btn ${activeFilter === item ? "active" : ""}`}
+              onClick={() => setActiveFilter(item)}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+        {/* ================= FEATURED ================= */}
+
+        <div className="featured-project">
+          <div className="featured-image">
+            <img src={featuredProject.image} alt={featuredProject.title} />
+
+            <div className="browser-bar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
 
-          <div className="btn-group">
-            <button
-              type="button"
-              className="btn btn-emerald"
-              onClick={() => scrollBy("left")}
-              disabled={!canScrollPrev}
-            >
-              ‹
-            </button>
-            <button
-              type="button"
-              className="btn btn-emerald"
-              onClick={() => scrollBy("right")}
-              disabled={!canScrollNext}
-            >
-              ›
-            </button>
+          <div className="featured-content">
+            {/* Badge */}
+
+            <div className="featured-tag">
+              <FaStar />
+              Featured Case Study
+            </div>
+
+            {/* Title */}
+
+            <h3>{featuredProject.title}</h3>
+
+            {/* Description */}
+
+            <p className="featured-description">
+              {featuredProject.description}
+            </p>
+
+            {/* Divider */}
+
+            <div className="featured-divider"></div>
+
+            {/* Quick Stats */}
+
+            <div className="project-stats">
+              <div className="stat-box">
+                <h4>{featuredProject.features.length}</h4>
+
+                <span>Features</span>
+              </div>
+
+              <div className="stat-box">
+                <h4>{featuredProject.technologies.length}</h4>
+
+                <span>Technologies</span>
+              </div>
+
+              <div className="stat-box">
+                <h4>React</h4>
+
+                <span>Stack</span>
+              </div>
+
+              <div className="stat-box">
+                <h4>2026</h4>
+
+                <span>Built</span>
+              </div>
+            </div>
+
+            <div className="featured-divider"></div>
+
+            {/* Tech */}
+
+            <h5 className="content-title">Tech Stack</h5>
+
+            <div className="tech-stack">
+              {featuredProject.technologies.map((tech) => (
+                <span key={tech}>{tech}</span>
+              ))}
+            </div>
+
+            <div className="featured-divider"></div>
+
+            {/* Highlights */}
+
+            <h5 className="content-title">Project Highlights</h5>
+
+            <div className="feature-list">
+              {featuredProject.features.map((item) => (
+                <div className="feature-item" key={item}>
+                  ✓ {item}
+                </div>
+              ))}
+            </div>
+
+            {/* Footer */}
+
+            <div className="featured-footer">
+              <a
+                href={featuredProject.live}
+                target="_blank"
+                rel="noreferrer"
+                className="live-btn"
+              >
+                <FaExternalLinkAlt />
+                Live Demo
+              </a>
+
+              <a
+                href={featuredProject.github}
+                target="_blank"
+                rel="noreferrer"
+                className="github-btn"
+              >
+                <FaGithub />
+                Source Code
+              </a>
+            </div>
           </div>
         </div>
 
-        <div
-          ref={scrollRef}
-          className="d-flex overflow-auto gap-4 pb-3"
-          style={{
-            scrollSnapType: "x mandatory",
-            WebkitOverflowScrolling: "touch",
-          }}
-          onScroll={updateScrollButtons}
-        >
+        {/* ================= OTHER PROJECTS ================= */}
+
+        <div className="projects-grid">
           {projects.map((project) => (
-            <div
-              key={project.id}
-              className="flex-shrink-0"
-              style={{ minWidth: 320, maxWidth: 360, scrollSnapAlign: "start" }}
-            >
-              <ProjectCard project={project} />
+            <div className="project-card" key={project.title}>
+              {/* Browser Window */}
+
+              <div className="project-browser">
+                <span></span>
+
+                <span></span>
+
+                <span></span>
+              </div>
+
+              {/* Screenshot */}
+
+              <div className="project-image">
+                <img src={project.image} alt={project.title} />
+
+                <div className="project-overlay">
+                  <a href={project.live} target="_blank" rel="noreferrer">
+                    <FaExternalLinkAlt />
+                  </a>
+
+                  <a href={project.github} target="_blank" rel="noreferrer">
+                    <FaGithub />
+                  </a>
+                </div>
+              </div>
+
+              {/* Content */}
+
+              <div className="project-content">
+                <h4>{project.title}</h4>
+
+                <p>{project.description}</p>
+
+                <div className="project-tech">
+                  {project.technologies.map((tech) => (
+                    <span key={tech}>{tech}</span>
+                  ))}
+                </div>
+
+                <a
+                  className="project-link"
+                  href={project.live}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View Project
+                  <FaArrowRight />
+                </a>
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* ================= CTA ================= */}
+
+        {/* ================= FOOTER ================= */}
+
+        <div className="projects-footer">
+          <div className="projects-footer-card">
+            <div className="footer-content">
+              <span className="footer-badge">MORE PROJECTS</span>
+
+              <h3>Want to See More?</h3>
+
+              <p>
+                Explore more of my projects, experiments and open-source
+                contributions on GitHub.
+              </p>
+            </div>
+
+            <div className="footer-buttons">
+              <a
+                href="https://github.com/talentedusain"
+                target="_blank"
+                rel="noreferrer"
+                className="github-footer-btn"
+              >
+                <FaGithub />
+                Visit GitHub
+              </a>
+
+              <a href="#contact" className="contact-footer-btn">
+                Let's Work Together
+                <FaArrowRight />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

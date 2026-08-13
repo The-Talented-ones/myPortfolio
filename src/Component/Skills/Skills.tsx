@@ -1,122 +1,211 @@
-import { useState, useEffect, useRef } from "react";
-import type { SkillCategory } from "../../types/home";
 import "./Skills.css";
 
-interface SkillsProps {
-  skillCategories: SkillCategory[];
-}
+import {
+  FaArrowRight,
+  FaCode,
+  FaDatabase,
+  FaLaptopCode,
+  FaPaintBrush,
+  FaSearch,
+  FaDraftingCompass,
+  FaBug,
+  FaRocket,
+} from "react-icons/fa";
 
-const Skills: React.FC<SkillsProps> = ({ skillCategories }) => {
-  const [animated, setAnimated] = useState(false);
-  const [currentLevels, setCurrentLevels] = useState<Record<string, number>>({});
-  const sectionRef = useRef<HTMLElement>(null);
-  const intervalRefs = useRef<Record<string, ReturnType<typeof setInterval>>>({});
+const skills = [
+  {
+    title: "Frontend Development",
+    level: 95,
+    icon: <FaLaptopCode />,
+  },
+  {
+    title: "React Ecosystem",
+    level: 90,
+    icon: <FaCode />,
+  },
+  {
+    title: "TypeScript",
+    level: 88,
+    icon: <FaCode />,
+  },
+  {
+    title: "Backend Development",
+    level: 72,
+    icon: <FaDatabase />,
+  },
+  {
+    title: "UI / UX",
+    level: 80,
+    icon: <FaPaintBrush />,
+  },
+];
 
-  // Initialize current levels to 0 when component mounts
-  useEffect(() => {
-    const initialLevels: Record<string, number> = {};
-    skillCategories.forEach(cat => {
-      cat.skills.forEach(skill => {
-        initialLevels[skill.name] = 0;
-      });
-    });
-    setCurrentLevels(initialLevels);
-  }, [skillCategories]);
+const techStack = [
+  {
+    title: "Languages",
+    items: ["JavaScript", "TypeScript", "Python", "HTML5", "CSS3"],
+  },
+  {
+    title: "Frameworks",
+    items: ["React", "Bootstrap", "Next.js", "Vite"],
+  },
+  {
+    title: "Tools",
+    items: ["Git", "GitHub", "VS Code", "Postman", "Figma"],
+  },
+  {
+    title: "Currently Learning",
+    items: ["Node.js", "Express", "MongoDB", "Docker"],
+  },
+];
 
-  // Intersection Observer to trigger animation
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !animated) {
-            setAnimated(true);
-            startCounting();
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+const workflow = [
+  {
+    icon: <FaSearch />,
+    title: "Research",
+  },
+  {
+    icon: <FaDraftingCompass />,
+    title: "Design",
+  },
+  {
+    icon: <FaCode />,
+    title: "Develop",
+  },
+  {
+    icon: <FaBug />,
+    title: "Test",
+  },
+  {
+    icon: <FaRocket />,
+    title: "Deploy",
+  },
+];
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-      // Cleanup all intervals on unmount
-      Object.values(intervalRefs.current).forEach(clearInterval);
-    };
-  }, [animated, skillCategories]);
-
-  const startCounting = () => {
-    // For each skill, start counting from 0 to its target level
-    skillCategories.forEach(cat => {
-      cat.skills.forEach(skill => {
-        const target = skill.level;
-        const skillName = skill.name;
-        let current = 0;
-
-        const interval = setInterval(() => {
-          if (current < target) {
-            current += Math.ceil(target / 50); // Increment step
-            if (current > target) current = target;
-            setCurrentLevels(prev => ({
-              ...prev,
-              [skillName]: current
-            }));
-          } else {
-            clearInterval(interval);
-            delete intervalRefs.current[skillName];
-          }
-        }, 20); // Update every 20ms for smooth animation
-
-        intervalRefs.current[skillName] = interval;
-      });
-    });
-  };
-
+const Skills = () => {
   return (
-    <section id="skills" className="skills-section py-5 bg-white dark:bg-gray-900" ref={sectionRef}>
+    <section id="skills" className="skills-section">
+      <div className="skills-glow left"></div>
+      <div className="skills-glow right"></div>
+
       <div className="container">
-         {/* Section Header */}
-        <div className="text-center mb-5">
-          <h2 className="display-5 fw-bold text-gray-800 dark:text-white">
-            Skills & <span className="text-emerald">Expertise</span>
+        {/* ================= HEADER ================= */}
+
+        <div className="skills-header">
+          <span className="section-badge">TECHNICAL EXPERTISE</span>
+
+          <h2>
+            Building Software With
+            <span> Modern Technologies</span>
           </h2>
+
+          <p>
+            My toolkit combines strong engineering fundamentals with modern
+            frameworks, enabling me to build scalable, maintainable and
+            user-focused digital products.
+          </p>
         </div>
-        <div className="row">
-          {skillCategories.map((cat) => (
-            <div key={cat.category} className="col-md-6 mb-4">
-              <h4 className="fw-bold mb-3 text-gray-800 dark:text-white">{cat.category}</h4>
 
-              {cat.skills.map((skill) => {
-                const current = currentLevels[skill.name] || 0;
-                return (
-                  <div key={skill.name} className="mb-3">
-                    <div className="d-flex justify-content-between mb-2">
-                      <span className="skill-name text-gray-700 dark:text-gray-300 font-medium">
-                        {skill.name}
-                      </span>
-                      <span className="skill-percentage text-emerald-600 dark:text-emerald-400 font-semibold">
-                        {current}%
-                      </span>
-                    </div>
+        {/* ================= MAIN GRID ================= */}
 
-                    <div className="progress-container">
-                      <div className="progress-bar-bg bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                        <div
-                          className="progress-bar-fill bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-200"
-                          style={{ width: `${current}%` }}
-                        />
-                      </div>
-                    </div>
+        <div className="skills-wrapper">
+          {/* LEFT */}
+
+          <div className="skills-progress-card">
+            <h3>Professional Skills</h3>
+
+            {skills.map((skill) => (
+              <div className="skill-item" key={skill.title}>
+                <div className="skill-title">
+                  <div className="skill-info">
+                    <span className="skill-icon">{skill.icon}</span>
+
+                    <span>{skill.title}</span>
                   </div>
-                );
-              })}
+
+                  <span className="skill-percent">{skill.level}%</span>
+                </div>
+
+                <div className="progress-bar">
+                  <div
+                    className="progress-fill"
+                    style={{
+                      width: `${skill.level}%`,
+                    }}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* RIGHT */}
+
+          <div className="tech-stack-card">
+            <h3>Technology Stack</h3>
+
+            {techStack.map((group) => (
+              <div key={group.title} className="tech-group">
+                <h4>{group.title}</h4>
+
+                <div className="tech-badges">
+                  {group.items.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ================= WORKFLOW ================= */}
+
+        <div className="workflow-section">
+          <h3>Development Workflow</h3>
+
+          <div className="workflow">
+            {workflow.map((step, index) => (
+              <div className="workflow-item" key={step.title}>
+                <div className="workflow-icon">{step.icon}</div>
+
+                <h5>{step.title}</h5>
+
+                {index < workflow.length - 1 && (
+                  <div className="workflow-line"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ================= FOOTER ================= */}
+        {/* ================= FOOTER CTA ================= */}
+
+        <div className="skills-footer">
+          <div className="skills-footer-card">
+            <span className="footer-badge">LET'S BUILD TOGETHER</span>
+
+            <h2>
+              Turning Ideas Into
+              <span> Powerful Digital Products</span>
+            </h2>
+
+            <p>
+              Whether you need a responsive website, a modern web application,
+              or a reliable software solution, I'm ready to help transform your
+              ideas into reality.
+            </p>
+
+            <div className="footer-buttons">
+              <a href="#contact" className="primary-btn">
+                Let's Talk
+                <FaArrowRight />
+              </a>
+
+              <a href="#projects" className="secondary-btn">
+                View Projects
+              </a>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
