@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  FiSun,
-  FiMoon,
   FiHome,
   FiUser,
   FiBriefcase,
@@ -13,14 +11,9 @@ import {
   FiTwitter,
 } from "react-icons/fi";
 
-import { useTheme } from "../../Context/ThemeContext";
 import logo from "../../assets/logo.png";
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme();
-
-  const darkMode = theme === "dark";
-
   const [scrolled, setScrolled] = useState(false);
   const [activeNav, setActiveNav] = useState("home");
 
@@ -28,7 +21,13 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = ["home", "about", "projects", "skills", "contact"];
+      const sections = [
+        "home",
+        "about",
+        "projects",
+        "skills",
+        "contact",
+      ];
 
       sections.forEach((section) => {
         const element = document.getElementById(section);
@@ -38,7 +37,10 @@ export default function Navbar() {
         const top = element.offsetTop - 120;
         const bottom = top + element.offsetHeight;
 
-        if (window.scrollY >= top && window.scrollY < bottom) {
+        if (
+          window.scrollY >= top &&
+          window.scrollY < bottom
+        ) {
           setActiveNav(section);
         }
       });
@@ -46,50 +48,35 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
-  /* =======================
-        BRAND THEME
-  ======================== */
+  /* ==============================
+        BRAND COLORS
+  ============================== */
 
-  const brandTheme = {
-    light: {
-      primary: "#1976F3",
-      secondary: "#1257E5",
-      accent: "#4DA3FF",
-      navy: "#071B4D",
+  const brand = {
+    primary: "#1976F3",
+    secondary: "#1257E5",
+    accent: "#4DA3FF",
+    navy: "#071B4D",
 
-      background: "#FFFFFF",
-      surface: "#F8FAFC",
+    background: "#FFFFFF",
+    text: "#102A43",
 
-      text: "#102A43",
+    navBg: "rgba(255, 255, 255, 0.92)",
 
-      navBg: "rgba(255,255,255,.92)",
-
-      shadow: "0 8px 25px rgba(7,27,77,.08)",
-    },
-
-    dark: {
-      primary: "#3B82F6",
-      secondary: "#2563EB",
-      accent: "#60A5FA",
-      navy: "#EAF2FF",
-
-      background: "#081225",
-      surface: "#0F172A",
-
-      text: "#F8FAFC",
-
-      navBg: "rgba(8,18,37,.94)",
-
-      shadow: "0 8px 25px rgba(0,0,0,.35)",
-    },
+    shadow:
+      "0 8px 25px rgba(7, 27, 77, 0.08)",
   };
 
-  const currentTheme = darkMode
-    ? brandTheme.dark
-    : brandTheme.light;
+  /* ==============================
+        NAVIGATION
+  ============================== */
 
   const navItems = [
     {
@@ -124,46 +111,58 @@ export default function Navbar() {
     },
   ];
 
+  /* ==============================
+        SOCIAL LINKS
+  ============================== */
+
   const socialLinks = [
     {
       icon: <FiGithub />,
       href: "https://github.com/talentedusain",
+      label: "GitHub",
     },
     {
       icon: <FiLinkedin />,
       href: "https://www.linkedin.com/in/oloyede-ameer-306569276/",
+      label: "LinkedIn",
     },
     {
       icon: <FiTwitter />,
       href: "https://twitter.com/talentedusain",
+      label: "Twitter",
     },
   ];
 
   return (
     <nav
-      className={`navbar navbar-expand-lg fixed-top px-lg-5 px-3 ${
-        darkMode ? "navbar-dark" : "navbar-light"
-      }`}
+      className="navbar navbar-expand-lg fixed-top px-lg-5 px-3"
       style={{
-        transition: ".35s ease",
+        transition: "all 0.35s ease",
+
         backdropFilter: "blur(14px)",
-        background: scrolled
-          ? currentTheme.navBg
-          : "transparent",
+
+        background: brand.navBg,
 
         boxShadow: scrolled
-          ? currentTheme.shadow
+          ? brand.shadow
           : "none",
 
         borderBottom: scrolled
-          ? `1px solid ${currentTheme.primary}15`
+          ? `1px solid ${brand.primary}15`
           : "none",
 
-        paddingTop: scrolled ? ".7rem" : "1rem",
-        paddingBottom: scrolled ? ".7rem" : "1rem",
+        paddingTop: scrolled
+          ? "0.7rem"
+          : "1rem",
+
+        paddingBottom: scrolled
+          ? "0.7rem"
+          : "1rem",
       }}
     >
-      {/* LOGO */}
+      {/* =================================
+            LOGO
+      ================================= */}
 
       <a
         href="#home"
@@ -171,7 +170,7 @@ export default function Navbar() {
       >
         <img
           src={logo}
-          alt="Logo"
+          alt="TalentedUsain Logo"
           style={{
             width: 52,
             height: 52,
@@ -185,7 +184,8 @@ export default function Navbar() {
               fontWeight: 800,
               fontSize: "1rem",
               letterSpacing: ".5px",
-              color: currentTheme.navy,
+              color: brand.navy,
+              lineHeight: 1.2,
             }}
           >
             TALENTEDUSAIN
@@ -193,7 +193,7 @@ export default function Navbar() {
 
           <small
             style={{
-              color: currentTheme.primary,
+              color: brand.primary,
               fontWeight: 500,
             }}
           >
@@ -202,75 +202,102 @@ export default function Navbar() {
         </div>
       </a>
 
-      {/* MOBILE */}
+      {/* =================================
+            MOBILE TOGGLE
+      ================================= */}
 
       <button
         className="navbar-toggler border-0 shadow-none"
+        type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarMenu"
+        aria-controls="navbarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
       >
-        <span
-          className="navbar-toggler-icon"
-          style={{
-            filter: darkMode ? "invert(1)" : "none",
-          }}
-        />
+        <span className="navbar-toggler-icon" />
       </button>
+
+      {/* =================================
+            NAVBAR CONTENT
+      ================================= */}
 
       <div
         className="collapse navbar-collapse"
         id="navbarMenu"
       >
-        {/* NAV LINKS */}
+        {/* =================================
+              NAV LINKS
+        ================================= */}
 
         <ul className="navbar-nav mx-auto gap-lg-2 mt-3 mt-lg-0">
-          {navItems.map((item) => (
-            <li
-              key={item.id}
-              className="nav-item"
-            >
-              <a
-                href={item.href}
-                className="nav-link px-3 py-2 rounded-pill d-flex align-items-center gap-2"
-                onClick={() => setActiveNav(item.id)}
-                style={{
-                  fontWeight: 500,
+          {navItems.map((item) => {
+            const isActive =
+              activeNav === item.id;
 
-                  transition: ".3s",
-
-                  color:
-                    activeNav === item.id
-                      ? "#fff"
-                      : currentTheme.text,
-
-                  background:
-                    activeNav === item.id
-                      ? `linear-gradient(135deg,
-                        ${currentTheme.primary},
-                        ${currentTheme.secondary})`
-                      : "transparent",
-                }}
+            return (
+              <li
+                key={item.id}
+                className="nav-item"
               >
-                {item.icon}
+                <a
+                  href={item.href}
+                  className="nav-link px-3 py-2 rounded-pill d-flex align-items-center gap-2"
+                  onClick={() =>
+                    setActiveNav(item.id)
+                  }
+                  style={{
+                    fontWeight: 500,
 
-                {item.label}
-              </a>
-            </li>
-          ))}
+                    transition:
+                      "all 0.3s ease",
+
+                    color: isActive
+                      ? "#FFFFFF"
+                      : brand.text,
+
+                    background: isActive
+                      ? `linear-gradient(
+                          135deg,
+                          ${brand.primary},
+                          ${brand.secondary}
+                        )`
+                      : "transparent",
+
+                    boxShadow: isActive
+                      ? `0 5px 15px ${brand.primary}25`
+                      : "none",
+                  }}
+                >
+                  {item.icon}
+
+                  <span>
+                    {item.label}
+                  </span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
-        {/* RIGHT */}
+        {/* =================================
+              RIGHT SIDE
+        ================================= */}
 
         <div className="d-flex align-items-center gap-3 mt-3 mt-lg-0">
-          {/* SOCIALS */}
+
+          {/* =================================
+                SOCIAL LINKS
+          ================================= */}
 
           <div className="d-flex gap-2">
-            {socialLinks.map((social, index) => (
+            {socialLinks.map((social) => (
               <a
-                key={index}
+                key={social.label}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={social.label}
                 style={{
                   width: 40,
                   height: 40,
@@ -283,36 +310,40 @@ export default function Navbar() {
 
                   textDecoration: "none",
 
-                  color: currentTheme.navy,
+                  color: brand.navy,
 
-                  background: darkMode
-                    ? "#112240"
-                    : "#F5F9FF",
+                  background: "#F5F9FF",
 
-                  border: `1px solid ${currentTheme.primary}20`,
+                  border: `1px solid ${brand.primary}20`,
 
-                  transition: ".3s",
+                  transition:
+                    "all 0.3s ease",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background =
-                    currentTheme.primary;
+                    brand.primary;
 
-                  e.currentTarget.style.color = "#fff";
+                  e.currentTarget.style.color =
+                    "#FFFFFF";
 
                   e.currentTarget.style.transform =
                     "translateY(-3px)";
+
+                  e.currentTarget.style.boxShadow =
+                    `0 8px 18px ${brand.primary}25`;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background =
-                    darkMode
-                      ? "#112240"
-                      : "#F5F9FF";
+                    "#F5F9FF";
 
                   e.currentTarget.style.color =
-                    currentTheme.navy;
+                    brand.navy;
 
                   e.currentTarget.style.transform =
                     "translateY(0)";
+
+                  e.currentTarget.style.boxShadow =
+                    "none";
                 }}
               >
                 {social.icon}
@@ -320,7 +351,9 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* RESUME */}
+          {/* =================================
+                RESUME BUTTON
+          ================================= */}
 
           <a
             href="/resume.pdf"
@@ -331,13 +364,16 @@ export default function Navbar() {
 
               borderRadius: "50px",
 
-              color: "#fff",
+              color: "#FFFFFF",
 
               fontWeight: 600,
 
-              background: `linear-gradient(135deg,
-              ${currentTheme.primary},
-              ${currentTheme.navy})`,
+              background:
+                `linear-gradient(
+                  135deg,
+                  ${brand.primary},
+                  ${brand.secondary}
+                )`,
 
               border: "none",
 
@@ -345,7 +381,25 @@ export default function Navbar() {
               alignItems: "center",
               gap: 8,
 
-              transition: ".3s",
+              boxShadow:
+                `0 7px 18px ${brand.primary}20`,
+
+              transition:
+                "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform =
+                "translateY(-2px)";
+
+              e.currentTarget.style.boxShadow =
+                `0 10px 25px ${brand.primary}35`;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform =
+                "translateY(0)";
+
+              e.currentTarget.style.boxShadow =
+                `0 7px 18px ${brand.primary}20`;
             }}
           >
             <FiFileText />
@@ -353,40 +407,6 @@ export default function Navbar() {
             Resume
           </a>
 
-          {/* THEME */}
-
-          <button
-            onClick={toggleTheme}
-            className="btn"
-            style={{
-              width: 42,
-              height: 42,
-
-              borderRadius: "50%",
-
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-
-              background: darkMode
-                ? "#112240"
-                : "#F5F9FF",
-
-              border: `1px solid ${currentTheme.primary}20`,
-            }}
-          >
-            {darkMode ? (
-              <FiSun
-                size={18}
-                color={currentTheme.accent}
-              />
-            ) : (
-              <FiMoon
-                size={18}
-                color={currentTheme.primary}
-              />
-            )}
-          </button>
         </div>
       </div>
     </nav>
