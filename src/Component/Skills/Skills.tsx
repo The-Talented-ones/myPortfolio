@@ -26,7 +26,7 @@ const fallbackSkills: SkillCategory[] = [
   {
     category: "Backend",
     skills: [
-      { name: "Backend Development", level: 72, icon: <FaDatabase /> },
+      { name: "Backend Development", level: 52, icon: <FaDatabase /> },
       { name: "UI / UX", level: 80, icon: <FaPaintBrush /> },
     ],
   },

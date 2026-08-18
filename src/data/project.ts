@@ -1,5 +1,7 @@
 import type { Project } from "../types/project";
 import schoolWebsiteImg from '../assets/project1.png';
+import mealSearchImg from "../assets/MealSearchImg.jpg";
+import myPortfolioImg from "../assets/myPortfolioImg.jpg";
 import todoList from "../assets/project2.jpg";
 
 // Edit this list to add or update cards. Each object renders one ProjectCard.
@@ -10,42 +12,42 @@ export const projects: Project[] = [
     description: "A comprehensive web platform for school recognition and global connectivity.",
     technologies: ["React", "TypeScript", "Bootstrap", "Node.js"],
     githubLink: "https://github.com/talentedusain/school-website",
-    liveLink: "https://alhikmahdaarussalaam.com.ng/",
+    liveLink: "https://al-hikmah-daarul-salam-islamic-scho.vercel.app/",
     image: schoolWebsiteImg,
     features: ["Student registration", "Grade management", "Attendance tracking", "Admin dashboard"],
     category: "frontend"
   },
   {
     id: 2,
-    title: "Todolist System",
+    title: "A Simple Todolist System",
     description: "A task management app with scheduling, tracking, and team collaboration features.",
     technologies: ["Html", "JavaScript", "CSS", ],
-    githubLink: "https://github.com",
-    liveLink: "https://example.com",
+    githubLink: "https://github.com/The-Talented-ones",
+    liveLink: "https://todo-list-project-teal-chi.vercel.app/",
     image: todoList,
     features: ["Task scheduling", "Activity tracking", "Team collaboration", "Notifications"],
     category: "frontend"
   },
   {
     id: 3,
-    title: "A Movie App",
-    description: "A platform to discover movies, view details, and create watchlists with a sleek UI.",
+    title: "A MealSearch App",
+    description: "A meal search application that allows users to discover recipes, create meal plans, and track nutritional information.",
     technologies: ["React", "TypeScript", "Bootstrap", "Node.js"],
-    githubLink: "https://github.com",
-    liveLink: "https://example.com",
-    image: "",
-    features: ["Movie discovery", "Watchlist management", "User reviews", "Responsive design"],
+    githubLink: "https://github.com/The-Talented-ones",
+    liveLink: "https://meal-search-app-nine.vercel.app/",
+    image: mealSearchImg,
+    features: ["Recipe discovery", "Meal planning", "Nutritional tracking", "Responsive design"],
     category: "frontend"
   },
   {
     id: 4,
     title: "Portfolio Website",
     description: "A polished personal showcase with animated sections and project highlights.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    githubLink: "https://github.com",
-    liveLink: "https://example.com",
-    image: "",
-    features: ["Responsive design", "Dark mode", "Contact form", "SEO-friendly"],
+    technologies: ["React.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    githubLink: "https://github.com/The-Talented-ones",
+    liveLink: "https://my-portfolio-one-pi-85.vercel.app/",
+    image: myPortfolioImg,
+    features: ["Animated sections", "Project highlights", "Responsive design", "Contact form"],
     category: "frontend"
   },
   {

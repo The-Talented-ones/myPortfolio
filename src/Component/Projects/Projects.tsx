@@ -10,7 +10,7 @@ import {
 
 import type { Project } from "../../types/project";
 import movieAppImg from "../../assets/movie-app.jpg";
-// import ecommerceImg from "../../assets/Components/projects/ecommerce.png";
+
 // import dashboardImg from "../../assets/Components/projects/dashboard.png";
 
 const categories = ["All", "Frontend", "Full Stack", "React", "Python"];
@@ -26,9 +26,9 @@ const featuredProject = {
 
   features: ["Authentication", "Responsive", "Dark Mode", "REST API"],
 
-  github: "https://github.com/talentedusain",
+  github: "https://github.com/The-Talented-ones",
 
-  live: "https://movie-demo.vercel.app",
+  live: "https://talux-net.vercel.app/",
 };
 
 type ProjectsProps = {

@@ -118,7 +118,7 @@ export default function Navbar() {
   const socialLinks = [
     {
       icon: <FiGithub />,
-      href: "https://github.com/talentedusain",
+      href: "https://github.com/The-Talented-ones",
       label: "GitHub",
     },
     {
@@ -188,7 +188,7 @@ export default function Navbar() {
               lineHeight: 1.2,
             }}
           >
-            TALENTEDUSAIN
+            TALENTEDUSAIN_DEV
           </div>
 
           <small
