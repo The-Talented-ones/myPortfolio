@@ -8,8 +8,9 @@ import {
   FiFileText,
   FiGithub,
   FiLinkedin,
-  FiTwitter,
 } from "react-icons/fi";
+import { SiX } from "react-icons/si";
+import myCV from "../../assets/my-professional-CV.pdf";
 
 import logo from "../../assets/logo.png";
 
@@ -127,9 +128,9 @@ export default function Navbar() {
       label: "LinkedIn",
     },
     {
-      icon: <FiTwitter />,
-      href: "https://twitter.com/talentedusain",
-      label: "Twitter",
+      icon: <SiX/>,
+      label: "X",
+      href: "https://x.com/TheTalented_dev",
     },
   ];
 
@@ -356,8 +357,8 @@ export default function Navbar() {
           ================================= */}
 
           <a
-            href="/resume.pdf"
-            download
+            href="{myCV}"
+            download="My_Resume.pdf"
             className="btn"
             style={{
               padding: "10px 18px",

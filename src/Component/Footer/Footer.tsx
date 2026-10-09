@@ -1,10 +1,10 @@
 import {
   FaGithub,
   FaLinkedin,
-  FaTwitter,
   FaArrowUp,
   FaHeart,
 } from "react-icons/fa";
+import { SiX } from "react-icons/si"
 import "./Footer.css";
 
 const Footer = () => {
@@ -43,10 +43,10 @@ const Footer = () => {
       href: "https://www.linkedin.com/in/oloyede-ameer-306569276/",
     },
     {
-      icon: FaTwitter,
-      label: "Twitter",
-      href: "https://twitter.com/talentedusain",
-    },
+          icon: SiX,
+          label: "X",
+          href: "https://x.com/TheTalented_dev",
+        },
   ];
 
   const scrollToTop = () => {

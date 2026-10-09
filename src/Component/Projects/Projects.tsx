@@ -265,7 +265,7 @@ const Projects = ({ projects = [] }: ProjectsProps) => {
 
             <div className="footer-buttons">
               <a
-                href="https://github.com/talentedusain"
+                href="https://github.com/The-Talented-ones"
                 target="_blank"
                 rel="noreferrer"
                 className="github-footer-btn"

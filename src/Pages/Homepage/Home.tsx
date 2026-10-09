@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaCode, FaGithub, FaCheckCircle, FaStar } from "react-icons/fa";
 import { FaReact, FaPython } from "react-icons/fa";
-import { SiTypescript, SiJavascript, SiNextdotjs, SiMongodb } from "react-icons/si";
+import { SiTypescript, SiJavascript, SiNextdotjs, SiMongodb, SiPhp } from "react-icons/si";
 
 import Navbar from "../../Component/Navbar/Navbar";
 import Footer from "../../Component/Footer/Footer";
@@ -34,7 +34,7 @@ const Home = () => {
         { name: "React", level: 70, icon: <FaReact /> },
         { name: "TypeScript", level: 75, icon: <SiTypescript /> },
         { name: "JavaScript", level: 85, icon: <SiJavascript /> },
-        { name: "Next.js", level: 40, icon: <SiNextdotjs /> },
+        { name: "Next.js", level: 35, icon: <SiNextdotjs /> },
       ],
     },
     {
@@ -43,6 +43,7 @@ const Home = () => {
         { name: "Node.js", level: 50, icon: <FaCode /> },
         { name: "Python", level: 60, icon: <FaPython /> },
         { name: "MongoDB", level:30, icon: <SiMongodb /> },
+        { name: "PHP", level:30, icon: <SiPhp /> },
       ],
     },
   ];

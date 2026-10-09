@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 
 import { SiTypescript, SiJavascript, SiBootstrap } from "react-icons/si";
-
+import myCV from '../../assets/my-professional-CV.pdf'
 import { FiCheckCircle } from "react-icons/fi";
 
 import type { Stat } from "../../types/home";
@@ -80,10 +80,9 @@ export default function Hero({ stats }: HeroProps) {
                 <FaArrowRight />
               </a>
 
-              <a href="./resume.pdf" download className="btn-secondary">
-                <FaDownload />
-                Resume
-              </a>
+              <a href={myCV} download="My_Resume.pdf" className="btn-secondary">
+      <FaDownload /> Resume
+    </a>
             </div>
 
             {/* Tech */}
@@ -155,7 +154,7 @@ export default function Hero({ stats }: HeroProps) {
 
             <div className="hero-socials">
               <a
-                href="https://github.com/talentedusain"
+                href="https://github.com/The-Talented-ones"
                 target="_blank"
                 rel="noreferrer"
               >
