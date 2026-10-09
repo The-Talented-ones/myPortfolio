@@ -357,7 +357,7 @@ export default function Navbar() {
           ================================= */}
 
           <a
-            href="{myCV}"
+            href={myCV}
             download="My_Resume.pdf"
             className="btn"
             style={{
